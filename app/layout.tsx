@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import { Sidebar } from "@/components/Sidebar";
-import { SupabaseProvider, UserProvider } from "@/providers";
+import { ModalProvider, SupabaseProvider, UserProvider, ToasterProvider } from "@/providers";
 import "./globals.css";
 
 const font = Comfortaa({ subsets: ["latin"] });
@@ -18,8 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SupabaseProvider>
           <UserProvider>
             <Sidebar>{children}</Sidebar>
+            <ModalProvider />
           </UserProvider>
         </SupabaseProvider>
+        <ToasterProvider />
       </body>
     </html>
   );
