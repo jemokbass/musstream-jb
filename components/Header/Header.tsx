@@ -6,9 +6,8 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
-import { useAuthModal } from "@/hooks/useAuthModal";
+import { useAuthModal, useUser } from "@/hooks";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useUser } from "@/hooks/useUser";
 import { Button } from "../Button";
 import { toast } from "react-hot-toast";
 
@@ -66,10 +65,7 @@ export const Header = ({ children, className }: Props) => {
                 <Button onClick={() => router.push("/account")} className="bg-white">
                   <FaUserAlt />
                 </Button>
-                <Button
-                  onClick={handleLogout}
-                  className="bg-white px-6 py-2 hover:bg-red-600 hover:opacity-100 border border-red-600"
-                >
+                <Button onClick={handleLogout} className="bg-white px-6 py-2  border">
                   Logout
                 </Button>
               </div>
