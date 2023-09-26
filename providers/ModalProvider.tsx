@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AuthModal } from "@/components/AuthModal/AuthModal";
+import { AuthModal } from "@/components/modals/AuthModal/AuthModal";
+import { UploadModal } from "@/components/modals/UploadModal/UploadModal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,6 +17,7 @@ export const ModalProvider = () => {
 
   return (
     <>
+      <UploadModal />
       <AuthModal />
     </>
   );
