@@ -2,9 +2,17 @@
 
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
-import { useUser, useAuthModal, useUploadModal } from "@/hooks";
 
-export const Library = () => {
+import { useUser, useAuthModal, useUploadModal } from "@/hooks";
+import { Song } from "@/types";
+
+import { MediaItem } from "../MediaItem";
+
+type Props = {
+  songs: Song[];
+};
+
+export const Library = ({ songs }: Props) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
@@ -27,7 +35,11 @@ export const Library = () => {
           className="text-neutral-400 cursor-pointer hover:text-white transition flex-shrink-0"
         />
       </div>
-      <ul className="flex flex-col gap-y-2 mt-4 px-3">List of Songs</ul>
+      <ul className="flex flex-col gap-y-2 mt-4 px-3">
+        {songs.map(song => (
+          <MediaItem key={song.id} song={song} onClick={() => {}} />
+        ))}
+      </ul>
     </div>
   );
 };

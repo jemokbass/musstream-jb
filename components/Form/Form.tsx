@@ -1,9 +1,10 @@
-import { Field, Form as FormComponent, Formik, FormikHelpers } from "formik";
+import { Form as FormComponent, Formik, FormikHelpers } from "formik";
 import { HTMLInputTypeAttribute } from "react";
 import { ObjectSchema, AnyObject } from "yup";
 import { toast } from "react-hot-toast";
 
 import { Button } from "../Button";
+import { Field } from "../Field";
 
 type ValueField = {
   value: any;
@@ -55,7 +56,7 @@ export const Form = <Values extends Record<string, ValueField>>({
               return (
                 <fieldset key={key} className="pb-1">
                   <div>{value.placeholder}</div>
-                  <input
+                  <Field
                     name={key}
                     id={key}
                     type={value.type}
@@ -75,6 +76,7 @@ export const Form = <Values extends Record<string, ValueField>>({
             return (
               <fieldset key={key}>
                 <Field
+                  as="formikField"
                   className={className}
                   id={key}
                   name={key}
