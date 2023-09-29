@@ -3,27 +3,29 @@ import { cookies } from "next/headers";
 
 import { Song } from "@/types";
 
-import { getSongs } from "./getSongs";
-
-export const getSongsByTitle = async (title: string): Promise<Song[]> => {
+export const getLikedSongs = async (): Promise<Song[]> => {
   const supabase = createServerComponentClient({
     cookies,
   });
 
-  if (!title) {
-    const songs = await getSongs();
-    return songs;
-  }
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const { data, error } = await supabase
-    .from("songs")
-    .select("*")
-    .ilike("title", `%${title}%`)
+    .from("liked_songs")
+    .select("*, songs(*)")
+    .eq("user_id", session?.user.id)
     .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error.message);
+    return [];
   }
 
-  return data ?? [];
+  if (!data) {
+    return [];
+  }
+
+  return data.map(item => ({ ...item.songs }));
 };
