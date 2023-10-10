@@ -1,5 +1,10 @@
+export { useOnPlay } from "./useOnPlay";
 export { useAuthModal } from "./useAuthModal";
 export { useUploadModal } from "./useUploadModal";
 export { useUser, MyUserContextProvider } from "./useUser";
 export { useLoadImage } from "./useLoadImage";
 export { useDebounce } from "./useDebounce";
+export { usePlayer } from "./usePlayer";
+export { useGetSongById } from "./useGetSongById";
+export { useLoadSongByUrl } from "./useLoadSongByUrl";
+export { useSound } from "./useSound";

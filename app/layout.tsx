@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
-import { Sidebar } from "@/components/Sidebar";
 import { ModalProvider, SupabaseProvider, UserProvider, ToasterProvider } from "@/providers";
-import "./globals.css";
 import { getSongsByUserId } from "@/actions";
+
+import { Sidebar } from "@/components/Sidebar";
+import { Player } from "@/components/Player";
+
+import "./globals.css";
 
 const font = Comfortaa({ subsets: ["latin"] });
 
@@ -23,6 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <SupabaseProvider>
           <UserProvider>
             <Sidebar songs={userSongs}>{children}</Sidebar>
+            <Player />
             <ModalProvider />
           </UserProvider>
         </SupabaseProvider>

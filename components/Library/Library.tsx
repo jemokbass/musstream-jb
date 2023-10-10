@@ -3,7 +3,7 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 
-import { useUser, useAuthModal, useUploadModal } from "@/hooks";
+import { useUser, useAuthModal, useUploadModal, useOnPlay } from "@/hooks";
 import { Song } from "@/types";
 
 import { MediaItem } from "../MediaItem";
@@ -16,6 +16,8 @@ export const Library = ({ songs }: Props) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
+
+  const onPlay = useOnPlay(songs);
 
   const onClick = () => {
     if (!user) {
@@ -37,7 +39,7 @@ export const Library = ({ songs }: Props) => {
       </div>
       <ul className="flex flex-col gap-y-2 mt-4 px-3">
         {songs.map(song => (
-          <MediaItem key={song.id} song={song} onClick={() => {}} />
+          <MediaItem key={song.id} song={song} onClick={id => onPlay(id)} />
         ))}
       </ul>
     </div>

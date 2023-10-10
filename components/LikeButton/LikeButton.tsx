@@ -47,7 +47,7 @@ export const LikeButton = ({ id }: Props) => {
     }
 
     if (isLiked) {
-      const { data, error } = await supabaseClient
+      const { error } = await supabaseClient
         .from("liked_songs")
         .delete()
         .eq("user_id", user.id)
@@ -59,9 +59,7 @@ export const LikeButton = ({ id }: Props) => {
         setIsLiked(false);
       }
     } else {
-      const { data, error } = await supabaseClient
-        .from("liked_songs")
-        .insert({ song_id: id, user_id: user.id });
+      const { error } = await supabaseClient.from("liked_songs").insert({ song_id: id, user_id: user.id });
 
       if (error) {
         toast.error(error.message);
