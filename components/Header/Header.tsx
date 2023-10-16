@@ -6,7 +6,7 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
-import { useAuthModal, useUser } from "@/hooks";
+import { useAuthModal, usePlayer, useUser } from "@/hooks";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Button } from "../Button";
 import { toast } from "react-hot-toast";
@@ -21,9 +21,11 @@ export const Header = ({ children, className }: Props) => {
   const { onOpen } = useAuthModal();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
+  const player = usePlayer();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
+    player.reset();
     router.refresh();
 
     if (error) {

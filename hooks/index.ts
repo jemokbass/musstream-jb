@@ -8,3 +8,4 @@ export { usePlayer } from "./usePlayer";
 export { useGetSongById } from "./useGetSongById";
 export { useLoadSongByUrl } from "./useLoadSongByUrl";
 export { useSound } from "./useSound";
+export { useSubscribeModal } from "./useSubscribeModal";
