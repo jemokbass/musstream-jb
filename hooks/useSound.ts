@@ -9,6 +9,8 @@ export const useSound = (songUrl: string, options?: Partial<HowlOptions>) => {
   );
 
   useEffect(() => {
+    sound?.play();
+
     return () => {
       sound?.unload();
     };

@@ -39,6 +39,7 @@ export const UploadModal = () => {
       const songFile = values.song;
       const imageFile = values.image;
       const uniqueId = uniqid();
+
       if (!user) {
         actions?.setSubmitting(false);
         return toast.error("You're not user");
