@@ -43,6 +43,10 @@ export type Price = {
   products?: Product;
 };
 
+export type ProductWithPrice = {
+  prices?: Price[];
+} & Product;
+
 export type Subscription = {
   id: string;
   user_id: string;
@@ -59,5 +63,5 @@ export type Subscription = {
   canceled_at?: string;
   trial_start?: string;
   trial_end?: string;
-  Price?: Price;
+  prices?: Price;
 };

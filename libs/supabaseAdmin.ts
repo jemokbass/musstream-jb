@@ -61,7 +61,6 @@ export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string;
     .select("stripe_customer_id")
     .eq("id", uuid)
     .single();
-
   if (error || !data?.stripe_customer_id) {
     const customerData: { metadata: { supabaseUUID: string }; email?: string } = {
       metadata: {
@@ -82,7 +81,7 @@ export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string;
       throw supabaseError;
     }
 
-    console.log(`New customer created and inserted for  ${uuid}`);
+    console.log(`New customer created and inserted for ${uuid}.`);
 
     return customer.id;
   }

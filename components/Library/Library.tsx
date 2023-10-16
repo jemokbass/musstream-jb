@@ -3,7 +3,7 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 
-import { useUser, useAuthModal, useUploadModal, useOnPlay } from "@/hooks";
+import { useUser, useAuthModal, useUploadModal, useOnPlay, useSubscribeModal } from "@/hooks";
 import { Song } from "@/types";
 
 import { MediaItem } from "../MediaItem";
@@ -15,7 +15,8 @@ type Props = {
 export const Library = ({ songs }: Props) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user } = useUser();
+  const { user, subscription } = useUser();
+  const subscribeModal = useSubscribeModal();
 
   const onPlay = useOnPlay(songs);
 
@@ -23,6 +24,11 @@ export const Library = ({ songs }: Props) => {
     if (!user) {
       authModal.onOpen();
     }
+
+    if (!subscription) {
+      return subscribeModal.onOpen();
+    }
+
     uploadModal.onOpen();
   };
 

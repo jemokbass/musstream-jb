@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useLoadImage } from "@/hooks";
+import { useLoadImage, usePlayer } from "@/hooks";
 import { Song } from "@/types";
 
 type Props = {
@@ -11,12 +11,21 @@ type Props = {
 };
 
 export const MediaItem = ({ song, onClick }: Props) => {
+  const player = usePlayer();
   const imageUrl = useLoadImage(song);
+
+  const handleClick = () => {
+    if (onClick) {
+      return onClick(song.id);
+    }
+
+    return player.setId(song.id);
+  };
 
   return (
     <div
       className="flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/50 w-full p-2 rounded-md"
-      onClick={() => onClick(song.id)}
+      onClick={handleClick}
     >
       <picture className="relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden">
         <Image
